@@ -50,7 +50,6 @@ class BaseModel:
         """updates the public instance attribute updated_at with the
         current datetime"""
         self.updated_at = datetime.now()
-        print(self)
         storage.save()  # NOsabemos
 
     def to_dict(self):
@@ -62,6 +61,10 @@ class BaseModel:
         """
         my_dict = self.__dict__
         my_dict['__class__'] = __class__.__name__
-        my_dict['updated_at'] = self.updated_at.isoformat()
-        my_dict['created_at'] = self.created_at.isoformat()
+
+        if type(self.updated_at) is datetime:
+            my_dict['updated_at'] = self.updated_at.isoformat()
+
+        if type(self.created_at) is datetime:
+            my_dict['created_at'] = self.created_at.isoformat()
         return my_dict

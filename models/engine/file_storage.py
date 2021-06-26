@@ -40,11 +40,10 @@ class FileStorage:
         """
         BaseModel->to_dict() -> <class 'dict'> -> JSON dump -> <class 'str'>
         """
-
+        objects = {}
         for key, obj in self.all().items():
-            FileStorage.__objects[key] =  obj.to_dict()
-
-        return str(json.dumps(self.all()))
+            objects[key] = obj.to_dict()
+        return str(json.dumps(objects))
 
     def __deserialize(self):
         try:
