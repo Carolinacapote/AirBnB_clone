@@ -1,6 +1,5 @@
 #!/usr/bin/python3
-'''
-This module contains a base class called 'BaseModel'that defines all common
+'''This module contains a base class called 'BaseModel'that defines all common
 attributes/methods for other classes.
 '''
 import uuid
@@ -9,8 +8,7 @@ from models import storage
 
 
 class BaseModel:
-    """
-    Public instance attributes:
+    """Public instance attributes:
         id (str):  assign with an uuid when an instance is created.
         created_at: current datetime when an instance is created
         updated_at: current datetime when an instance is created and it will

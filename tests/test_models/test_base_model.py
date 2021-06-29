@@ -1,6 +1,7 @@
-'''
+#!/usr/bin/python3
+"""
     module documentation
-'''
+"""
 import unittest
 from models.base_model import BaseModel
 
