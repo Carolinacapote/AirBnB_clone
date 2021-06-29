@@ -23,6 +23,42 @@ class HBNBCommand(cmd.Cmd):
     ERROR_ATTR = "** attribute name missing **"
     ERROR_ATTR_VALUE = "** value missing **"
 
+
+    def cmd_cls_args_split(self, command, class_name):
+        if command.find("(") != -1:
+            attr_name = ''
+            value = ''
+
+            args_split = command.split('(')
+            command = args_split[0]
+            args_split[1] = args_split[1].replace(')', '')
+            args_split[1] = args_split[1].replace('"', '')
+            args = args_split[1].split(',')
+            id = args[0].strip(" ")
+            if len(args) > 1:
+                attr_name = args[1].strip(" ")
+            if len(args) > 2:
+                value = args[2].strip(" ")
+            return '{} {} {} {} "{}"'.format(command, class_name, id, attr_name, value)
+        elif class_name in HBNBCommand.valid_classes:
+            return "{} {}".format(command, class_name)
+
+
+
+    def onecmd(self, line: str) -> bool:
+        line_split = line.split(".")
+        # Class.command
+        if len(line_split) > 1:
+            class_name = line_split[0]
+            command = line_split[1].replace('()', '')
+            # parameters
+            line = self.cmd_cls_args_split(command, class_name)
+
+            # input: Review.update("774e564d-42ab-40d8-a7fb-7818068f0032", "first_name", "John")
+            # expected: update User 38f22813-2753-4d42-b37c-57a17f1e4f88 first_name "Jhon"
+            # without parameters
+        return super().onecmd(line)
+
     def validate_len_args(self, arg):
         """Validates if the command receives the class_name argument"""
         if len(arg) == 0:
@@ -186,7 +222,6 @@ class HBNBCommand(cmd.Cmd):
             os.system('clear')
         else:
             os.system('cls')
-
 
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
