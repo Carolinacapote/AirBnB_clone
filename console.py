@@ -2,6 +2,7 @@
 """
 """
 import cmd
+
 from models.base_model import BaseModel
 from models import storage
 
@@ -9,7 +10,7 @@ from models import storage
 class HBNBCommand(cmd.Cmd):
     """"""
     prompt = '(hbnb)'
-    valid_classes = ['BaseModel']
+    valid_classes = ['BaseModel', 'User']
 
     ERROR_CLASS_NAME = '** class name missing **'
     ERROR_CLASS = "** class doesn't exist **"
@@ -76,7 +77,12 @@ class HBNBCommand(cmd.Cmd):
         if not class_name:
             return
 
-        my_model = BaseModel()
+
+        if class_name == 'BaseModel':
+            my_model = BaseModel()
+        elif class_name == 'User':
+            from models.user import User
+            my_model = User()
         my_model.save()
         print(my_model.id)
 
@@ -93,11 +99,10 @@ class HBNBCommand(cmd.Cmd):
             return
         objects = storage.all()
         key = "{}.{}".format(class_name, id_number)
-
         try:
             print(objects[key])
         except:
-            print()
+            print(HBNBCommand.ERROR_ID_NOT_FOUND)
 
     def do_destroy(self, arg):
         if not self.validate_len_args(arg):
@@ -145,7 +150,7 @@ class HBNBCommand(cmd.Cmd):
         attribute = self.validate_attr(arg)
         if not attribute:
             return
-        attr_value :str= self.validate_attr_value(arg)
+        attr_value = self.validate_attr_value(arg)
         if not attr_value:
             return
         try:

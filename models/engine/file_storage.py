@@ -2,6 +2,7 @@
 """This module contains a base class called 'FileStorage' that defines
 the process the serializes and deserializes to JSON
 """
+from datetime import datetime
 import json
 
 
@@ -31,9 +32,13 @@ class FileStorage:
 
         if not file_data:
             return
+
         for k, v in file_data.items():
             if v['__class__'] == 'BaseModel':
                 FileStorage.__objects[k] = BaseModel(**v)
+            elif v['__class__'] == 'User':
+                from models.user import User
+                FileStorage.__objects[k] = User(**v)
 
     def __serialize(self):
         """
@@ -42,6 +47,7 @@ class FileStorage:
         objects = {}
         for key, obj in self.all().items():
             objects[key] = obj.to_dict()
+
         return str(json.dumps(objects))
 
     def __deserialize(self):

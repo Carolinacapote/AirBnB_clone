@@ -1,4 +1,4 @@
-#!/usr"""/bin/python3
+#!/usr/bin/python3
 """This module contains a base class called 'BaseModel'that defines all common
 attributes/methods for other classes.
 """
@@ -42,8 +42,14 @@ class BaseModel:
             Information with this format:
             [<class name>] (<self.id>) <self.__dict__>
         """
+
+        my_dict = self.__dict__
+
+        my_dict['updated_at'] = self.updated_at
+        my_dict['created_at'] = self.created_at
+
         to_print = '[{}] ({}) {}'.format(__class__.__name__, self.id,
-                                         self.__dict__)
+                                         my_dict)
         return to_print
 
     def save(self):
@@ -59,12 +65,15 @@ class BaseModel:
             -A 'key __class__'  with the class name of the object.
             -'created_at' and 'updated_at' in isoformat()
         """
-        my_dict = self.__dict__
+        my_dict = self.__dict__.copy()
         my_dict['__class__'] = __class__.__name__
+
 
         if type(self.updated_at) is datetime:
             my_dict['updated_at'] = self.updated_at.isoformat()
 
+
         if type(self.created_at) is datetime:
             my_dict['created_at'] = self.created_at.isoformat()
+
         return my_dict
