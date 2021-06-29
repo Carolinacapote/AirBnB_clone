@@ -16,7 +16,7 @@ class BaseModel:
     """
 
     def __init__(self, *args, **kwargs):
-
+        """ constructor validate kwargs """
         if len(kwargs) == 0:
             self.id = str(uuid.uuid4())
             self.created_at = datetime.now()

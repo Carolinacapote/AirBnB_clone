@@ -1,4 +1,4 @@
 #!/usr/bin/python3
 """
-package documentation
+this is a main package test airbnb project
 """
