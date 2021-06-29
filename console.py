@@ -1,16 +1,18 @@
 #!/usr/bin/python3
-"""
+"""Program called console.py that contains the entry point of the command
+interpreter.
 """
 import cmd
-
+import os
 from models.base_model import BaseModel
 from models import storage
 
-
+# TODO: refactor delete, create, update, print in storage
 class HBNBCommand(cmd.Cmd):
-    """"""
+    """Class to manage the console and all the commands built to the project"""
     prompt = '(hbnb)'
-    valid_classes = ['BaseModel', 'User']
+    valid_classes = ['BaseModel', 'User', 'Amenity', 'Review', 'State', 'City',
+                     'Place']
 
     ERROR_CLASS_NAME = '** class name missing **'
     ERROR_CLASS = "** class doesn't exist **"
@@ -20,12 +22,14 @@ class HBNBCommand(cmd.Cmd):
     ERROR_ATTR_VALUE = "** value missing **"
 
     def validate_len_args(self, arg):
+        """Validates if the command receives the class_name argument"""
         if len(arg) == 0:
             print(HBNBCommand.ERROR_CLASS_NAME)
             return False
         return True
 
     def validate_class_name(self, arg):
+        """Validates if the class_name argument is a valid class"""
         args = arg.split(' ')
         class_name = args[0]
         if class_name not in HBNBCommand.valid_classes:
@@ -34,6 +38,7 @@ class HBNBCommand(cmd.Cmd):
         return class_name
 
     def validate_id(self, arg):
+        """Validates if the command receives an id_number argument """
         args = arg.split(' ')
         if len(args) < 2:
             print(HBNBCommand.ERROR_ID)
@@ -42,6 +47,7 @@ class HBNBCommand(cmd.Cmd):
         return id_number
 
     def validate_attr(self, arg):
+        """Validates if the command receives an attribute argu"""
         args = arg.split(' ')
         if len(args) < 3:
             print(HBNBCommand.ERROR_ATTR)
@@ -77,14 +83,7 @@ class HBNBCommand(cmd.Cmd):
         if not class_name:
             return
 
-
-        if class_name == 'BaseModel':
-            my_model = BaseModel()
-        elif class_name == 'User':
-            from models.user import User
-            my_model = User()
-        my_model.save()
-        print(my_model.id)
+        storage.create(class_name)
 
     def do_show(self, arg):
         if not self.validate_len_args(arg):
@@ -126,16 +125,13 @@ class HBNBCommand(cmd.Cmd):
             print(HBNBCommand.ERROR_ID_NOT_FOUND)
 
     def do_all(self, arg):
+        class_name = None
         if len(arg) > 0:
             class_name = self.validate_class_name(arg)
             if not class_name:
                 return
-
-        data_list = []
-        for _, value in storage.all().items():
-            data_list.append(str(value))
-
-        print(data_list)
+            # filter data
+        storage.print(class_name)
 
     def do_update(self, arg):
         if not self.validate_len_args(arg):
@@ -172,10 +168,14 @@ class HBNBCommand(cmd.Cmd):
             except:
                 pass
 
-        print(type(attr_value))
         setattr(obj, attribute, attr_value)
         obj.save()
-        # update BaseModel 7a9cfcec-b0bf-42b0-8fc5-f9d8318ccf54 first_name "Betty"
+
+    def do_clear(self, _):
+        if os.name == 'posix':
+            os.system('clear')
+        else:
+            os.system('cls')
 
 
 if __name__ == '__main__':

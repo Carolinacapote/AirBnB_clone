@@ -15,7 +15,6 @@ class BaseModel:
         updated_at: current datetime when an instance is created and it will
         be updated every time the object changes.
     """
-
     def __init__(self, *args, **kwargs):
 
         if len(kwargs) == 0:
@@ -42,13 +41,12 @@ class BaseModel:
             Information with this format:
             [<class name>] (<self.id>) <self.__dict__>
         """
-
         my_dict = self.__dict__
 
         my_dict['updated_at'] = self.updated_at
         my_dict['created_at'] = self.created_at
 
-        to_print = '[{}] ({}) {}'.format(__class__.__name__, self.id,
+        to_print = '[{}] ({}) {}'.format(self.__class__.__name__, self.id,
                                          my_dict)
         return to_print
 
@@ -66,12 +64,10 @@ class BaseModel:
             -'created_at' and 'updated_at' in isoformat()
         """
         my_dict = self.__dict__.copy()
-        my_dict['__class__'] = __class__.__name__
-
+        my_dict['__class__'] = self.__class__.__name__
 
         if type(self.updated_at) is datetime:
             my_dict['updated_at'] = self.updated_at.isoformat()
-
 
         if type(self.created_at) is datetime:
             my_dict['created_at'] = self.created_at.isoformat()
