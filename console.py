@@ -8,6 +8,8 @@ from models.base_model import BaseModel
 from models import storage
 
 # TODO: refactor delete, create, update, print in storage
+
+
 class HBNBCommand(cmd.Cmd):
     """Class to manage the console and all the commands built to the project"""
     prompt = '(hbnb)'
