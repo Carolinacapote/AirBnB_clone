@@ -58,6 +58,7 @@ class HBNBCommand(cmd.Cmd):
         return attribute
 
     def validate_attr_value(self, arg):
+        """Validates if attribute value exist"""
         args = arg.split(' ')
         if len(args) < 4:
             print(HBNBCommand.ERROR_ATTR_VALUE)
@@ -71,6 +72,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def emptyline(self):
+        """ None """
         pass
 
     def do_quit(self, arg):
@@ -78,6 +80,7 @@ class HBNBCommand(cmd.Cmd):
         return True
 
     def do_create(self, arg):
+        """ create new elements """
         if not self.validate_len_args(arg):
             return
 
@@ -88,6 +91,7 @@ class HBNBCommand(cmd.Cmd):
         storage.create(class_name)
 
     def do_show(self, arg):
+        """ show element by id """
         if not self.validate_len_args(arg):
             return
 
@@ -106,6 +110,7 @@ class HBNBCommand(cmd.Cmd):
             print(HBNBCommand.ERROR_ID_NOT_FOUND)
 
     def do_destroy(self, arg):
+        """ delete elements in storage """
         if not self.validate_len_args(arg):
             return
 
@@ -127,6 +132,7 @@ class HBNBCommand(cmd.Cmd):
             print(HBNBCommand.ERROR_ID_NOT_FOUND)
 
     def do_all(self, arg):
+        """ print all elements in storage by class name"""
         class_name = None
         if len(arg) > 0:
             class_name = self.validate_class_name(arg)
@@ -136,6 +142,7 @@ class HBNBCommand(cmd.Cmd):
         storage.print(class_name)
 
     def do_update(self, arg):
+        """ Update info in storage """
         if not self.validate_len_args(arg):
             return
         class_name = self.validate_class_name(arg)
@@ -174,6 +181,7 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
 
     def do_clear(self, _):
+        """clear the terminal"""
         if os.name == 'posix':
             os.system('clear')
         else:
