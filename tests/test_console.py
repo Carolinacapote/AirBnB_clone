@@ -36,4 +36,3 @@ class TestConsole(unittest.TestCase):
     def test_create_ok(self):
         cmd = HBNBCommand()
         out = self.out_test(cmd.do_create, 'BaseModel', '')
-
