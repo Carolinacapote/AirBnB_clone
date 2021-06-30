@@ -107,3 +107,10 @@ $ ./console.py
 (hbnb) quit
 $
 ```
+
+## Authors
+
+| Name | GitHub username |
+| ------ | ------ |
+| Carolina Capote | [Carolinacapote](https://github.com/Carolinacapote) |
+| William Rodríguez | [williamzborja](https://github.com/williamzborja) |
