@@ -18,7 +18,7 @@ class HBNBCommand(cmd.Cmd):
 
     ERROR_CLASS_NAME = '** class name missing **'
     ERROR_CLASS = "** class doesn't exist **"
-    ERROR_ID = "** instance id_number missing **"
+    ERROR_ID = "** instance id missing **"
     ERROR_ID_NOT_FOUND = "** no instance found **"
     ERROR_ATTR = "** attribute name missing **"
     ERROR_ATTR_VALUE = "** value missing **"
@@ -84,8 +84,8 @@ class HBNBCommand(cmd.Cmd):
         if len(args) < 2:
             print(HBNBCommand.ERROR_ID)
             return False
-        id = args[1]
-        return id
+        id_number = args[1]
+        return id_number
 
     def validate_attr(self, arg):
         """Validates if the command receives an attribute argument"""
