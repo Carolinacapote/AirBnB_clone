@@ -19,16 +19,16 @@ During this first part of the project we had to::
 - **console.py**  
 It contains a command line interpreter limited to a specific use-case. In our case, we want to be able to manage the objects of our project using this console.
 The file contains the valid commands that you will find below:
-  - do_EOF(): exits the program typing Ctrl + d.
-  - emptyline(): an empty line + ENTER do not execute anything.
-  - do_quit(): exits the program.
-  - do_create(): Creates a new instance of a specific class and saves it (to the JSON file).
-  - do_show(): Prints the string representation of an instance based on the class name and id.
-  - do_destroy(): Deletes an instance based on the class name and id
-  - do_all(): Shows all the instances that are alocated into the file.json based or not on the class name
-  - do_update(): Updates an instance based on the class name and id by adding or updating an attribute
-  - do_clear(): Clears the console.
- 
+  - [do_EOF()](./console.py): exits the program typing Ctrl + d.
+  - [emptyline()](./console.py): an empty line + ENTER do not execute anything.
+  - [do_quit()](./console.py): exits the program.
+  - [do_create()](./console.py): Creates a new instance of a specific class and saves it (to the JSON file).
+  - [do_show()](./console.py): Prints the string representation of an instance based on the class name and id.
+  - [do_destroy()](./console.py): Deletes an instance based on the class name and id
+  - [do_all()](./console.py): Shows all the instances that are alocated into the file.json based or not on the class name
+  - [do_update()](./console.py): Updates an instance based on the class name and id by adding or updating an attribute
+  - [do_clear()](./console.py): Clears the console.
+
 - **models**  
 This folder contains all the Class modules of the project, and a folder called engine. Click on [models](https://github.com/williamzborja/AirBnB_clone/tree/main/models) to know more about it.
 
@@ -109,8 +109,7 @@ $
 ```
 
 ## Authors
-
 | Name | GitHub username |
 | ------ | ------ |
-| Carolina Capote | [Carolinacapote](https://github.com/Carolinacapote) |
-| William Rodríguez | [williamzborja](https://github.com/williamzborja) |
+| Carolina Capote :information_desk_person:| [Carolinacapote](https://github.com/Carolinacapote) |
+| William Rodríguez :bowtie: | [williamzborja](https://github.com/williamzborja) |
