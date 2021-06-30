@@ -70,3 +70,24 @@ Documented commands (type help <topic>):
 EOF  help  quit  create  destroy  show  all  update
 $
 ```
+
+### Commands Usage
+
+The commands of the console stored in **console.py** have 2 different usages.
+
+#### - Calling the command first:
+  - **quit**, **help**, **all** and **clear** can be called without any argument `<command>`
+    - **help** and **all** accept arguments as well.
+      To read the documentation of a command use `<help> <command>`.
+      To print all the instances of a specific class type `<all> <class_name>`
+  - **create** receives only 1 valid argument. `<create> <class_name>`
+  - **show** and **destroy** receive only 2 valid arguments `<show> <class_name> <id>` or `<destroy> <class_name> <id>`
+  - **update** needs 4 valid arguments to work. To update or add an attribute to the instance type `<update> <class_name> <id> <attribute name> "<attribute value>"` (do not forget the quots for the attribute value)
+
+#### - Calling the class name first and then the command (`<class_name>.<command>()`)
+
+- **quit**, **help** and **clear** Do not have this Usage, just the first one.
+- **all** has this usage to print all the instances of a specific class. Usage: `<class_name>. all()`
+- **create** usage: `<class_name>.create()`
+- **show** and **destroy** must use the id argument to work. Usage: `<class_name>.show("<id>")` or `<class_name>.destroy("<id>")` (do not forget the quotes for the arguments insede the parentheses)
+- **update** receives the id, atrribute name and attributr value inside the (). Usage: `<class_name>.update("<id>", "<attribute name>", "<attribute value>")` (do not forget the quotes for the arguments insede the parentheses)
