@@ -91,3 +91,19 @@ The commands of the console stored in **console.py** have 2 different usages.
 - **create** usage: `<class_name>.create()`
 - **show** and **destroy** must use the id argument to work. Usage: `<class_name>.show("<id>")` or `<class_name>.destroy("<id>")` (do not forget the quotes for the arguments insede the parentheses)
 - **update** receives the id, atrribute name and attributr value inside the (). Usage: `<class_name>.update("<id>", "<attribute name>", "<attribute value>")` (do not forget the quotes for the arguments insede the parentheses)
+
+Some examples of the usage:
+```
+$ ./console.py
+(hbnb) create User
+49faff9a-6318-451f-87b6-910505c55907
+(hbnb) update User 49faff9a-6318-451f-87b6-910505c55907 first_name "Betty"
+(hbnb) User 49faff9a-6318-451f-87b6-910505c55907
+[User] (49faff9a-6318-451f-87b6-910505c55907) {'first_name': 'Betty', 'id': '49faff9a-6318-451f-87b6-910505c55907', 'created_at': datetime.datetime(2017, 10, 2, 3, 10, 25, 903293), 'updated_at': datetime.datetime(2017, 10, 2, 3, 11, 3, 49401)}
+(hbnb) User.all()
+[[User] (246c227a-d5c1-403d-9bc7-6a47bb9f0f68) {'first_name': 'Betty', 'last_name': 'Holberton', 'created_at': datetime.datetime(2017, 9, 28, 21, 12, 19, 611352), 'updated_at': datetime.datetime(2017, 9, 28, 21, 12, 19, 611363), 'password': '63a9f0ea7bb98050796b649e85481845', 'email': 'airbnb@holbertonshool.com', 'id': '246c227a-d5c1-403d-9bc7-6a47bb9f0f68'}]
+(hbnb) User.show("38f22813-2753-4d42-b37c-57a17f1e4f88")
+[User] (38f22813-2753-4d42-b37c-57a17f1e4f88) {'first_name': 'Betty', 'last_name': 'Holberton', 'created_at': datetime.datetime(2017, 9, 28, 21, 11, 42, 848279), 'updated_at': datetime.datetime(2017, 9, 28, 21, 11, 42, 848291), 'password': 'b9be11166d72e9e3ae7fd407165e4bd2', 'email': 'airbnb@holbertonshool.com', 'id': '38f22813-2753-4d42-b37c-57a17f1e4f88'}
+(hbnb) quit
+$
+```
