@@ -42,3 +42,31 @@ This folder contains all the UNITTEST of every module stored in the models folde
 - **Style:** All modules use the **PEP 8** style
 - **Documentation:** All modules have documentation, including the functions, classes,etc.
 
+
+## Usage
+
+The console (console.py) works like this in interactive mode:
+```
+$ ./console.py
+(hbnb) help
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit  create  destroy  show  all  update
+
+(hbnb)
+(hbnb)
+(hbnb) quit
+$
+```
+
+But also in non-interactive mode:
+```
+$ echo "help" | ./console.py
+(hbnb)
+
+Documented commands (type help <topic>):
+========================================
+EOF  help  quit  create  destroy  show  all  update
+$
+```
