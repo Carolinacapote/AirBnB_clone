@@ -13,10 +13,10 @@ During this first part of the project we had to::
 
 ### Files description
 
-- **AUTHORS**
+- **AUTHORS**  
  This file has a list of all individuals having contributed content to the repository. 
 
-- **console.py**
+- **console.py**  
 It contains a command line interpreter limited to a specific use-case. In our case, we want to be able to manage the objects of our project using this console.
 The file contains the valid commands that you will find below:
   - do_EOF(): exits the program typing Ctrl + d.
@@ -29,9 +29,9 @@ The file contains the valid commands that you will find below:
   - do_update(): Updates an instance based on the class name and id by adding or updating an attribute
   - do_clear(): Clears the console.
  
-- **models**
+- **models**  
 This folder contains all the Class modules of the project, and a folder called engine. Click on [models](https://github.com/williamzborja/AirBnB_clone/tree/main/models) to know more about it.
 
-- **tests**
+- **tests**  
 This folder contains all the UNITTEST of every module stored in the models folder and the TEST of the console.py file.
 
