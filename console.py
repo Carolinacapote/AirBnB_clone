@@ -241,5 +241,18 @@ class HBNBCommand(cmd.Cmd):
         else:
             os.system('cls')
 
+    def do_count(self, arg):
+        """ Retrieves the number of instances of a specific class
+        Usage: <class_name>.count()
+        """
+        if not self.validate_len_args(arg):
+            return
+        class_name = self.validate_class_name(arg)
+        if not class_name:
+            return
+
+        class_list = storage.filter_by_class(class_name)
+        print(len(class_list))
+
 if __name__ == '__main__':
     HBNBCommand().cmdloop()
