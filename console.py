@@ -18,13 +18,16 @@ class HBNBCommand(cmd.Cmd):
 
     ERROR_CLASS_NAME = '** class name missing **'
     ERROR_CLASS = "** class doesn't exist **"
-    ERROR_ID = "** instance id missing **"
+    ERROR_ID = "** instance id_number missing **"
     ERROR_ID_NOT_FOUND = "** no instance found **"
     ERROR_ATTR = "** attribute name missing **"
     ERROR_ATTR_VALUE = "** value missing **"
 
-
     def cmd_cls_args_split(self, command, class_name):
+        """Auxiliary function to update the command-line interpreter. This
+        function manages and reorders the input of the console to allow the
+        functions to work with a formatted command line.
+        """
         if command.find("(") != -1:
             attr_name = ''
             value = ''
@@ -34,18 +37,21 @@ class HBNBCommand(cmd.Cmd):
             args_split[1] = args_split[1].replace(')', '')
             args_split[1] = args_split[1].replace('"', '')
             args = args_split[1].split(',')
-            id = args[0].strip(" ")
+            id_number = args[0].strip(" ")
             if len(args) > 1:
                 attr_name = args[1].strip(" ")
             if len(args) > 2:
                 value = args[2].strip(" ")
-            return '{} {} {} {} "{}"'.format(command, class_name, id, attr_name, value)
+            return '{} {} {} {} "{}"'.format(command, class_name, id_number,
+                                             attr_name, value)
+
         elif class_name in HBNBCommand.valid_classes:
             return "{} {}".format(command, class_name)
 
-
-
     def onecmd(self, line: str) -> bool:
+        """Updating the command line interpreter to allow this usage:
+        <class name>.<command>() or <class name>.<command>("args")
+        """
         line_split = line.split(".")
         # Class.command
         if len(line_split) > 1:
@@ -54,9 +60,6 @@ class HBNBCommand(cmd.Cmd):
             # parameters
             line = self.cmd_cls_args_split(command, class_name)
 
-            # input: Review.update("774e564d-42ab-40d8-a7fb-7818068f0032", "first_name", "John")
-            # expected: update User 38f22813-2753-4d42-b37c-57a17f1e4f88 first_name "Jhon"
-            # without parameters
         return super().onecmd(line)
 
     def validate_len_args(self, arg):
@@ -85,7 +88,7 @@ class HBNBCommand(cmd.Cmd):
         return id_number
 
     def validate_attr(self, arg):
-        """Validates if the command receives an attribute argu"""
+        """Validates if the command receives an attribute argument"""
         args = arg.split(' ')
         if len(args) < 3:
             print(HBNBCommand.ERROR_ATTR)
@@ -94,7 +97,7 @@ class HBNBCommand(cmd.Cmd):
         return attribute
 
     def validate_attr_value(self, arg):
-        """Validates if attribute value exist"""
+        """Validates if attribute value exists"""
         args = arg.split(' ')
         if len(args) < 4:
             print(HBNBCommand.ERROR_ATTR_VALUE)
@@ -127,7 +130,7 @@ class HBNBCommand(cmd.Cmd):
         storage.create(class_name)
 
     def do_show(self, arg):
-        """ show element by id """
+        """ show element by id_number """
         if not self.validate_len_args(arg):
             return
 
