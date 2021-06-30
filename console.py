@@ -106,7 +106,8 @@ class HBNBCommand(cmd.Cmd):
         return attr_value
 
     def do_EOF(self, arg):
-        """ Quit with new line """
+        """ Quits with new line <end of file>
+        Usage: Ctrl + d """
         print()
         return True
 
@@ -115,11 +116,14 @@ class HBNBCommand(cmd.Cmd):
         pass
 
     def do_quit(self, arg):
-        """ quit you tty"""
+        """ Quits the console
+        Usage: quit """
         return True
 
     def do_create(self, arg):
-        """ create new elements """
+        """ Creates new elements
+        Usage: create <class_name> or <class_name>.create()
+        """
         if not self.validate_len_args(arg):
             return
 
@@ -130,7 +134,9 @@ class HBNBCommand(cmd.Cmd):
         storage.create(class_name)
 
     def do_show(self, arg):
-        """ show element by id_number """
+        """ Shows an element by id_number
+        Usage: show <class_name> <id> or <class_name>.show("<id>")
+        """
         if not self.validate_len_args(arg):
             return
 
@@ -149,7 +155,9 @@ class HBNBCommand(cmd.Cmd):
             print(HBNBCommand.ERROR_ID_NOT_FOUND)
 
     def do_destroy(self, arg):
-        """ delete elements in storage """
+        """ Deletes elements in storage
+        Usage: destroy <class_name> <id> or <class_name>.destroy("<id>")
+        """
         if not self.validate_len_args(arg):
             return
 
@@ -171,7 +179,9 @@ class HBNBCommand(cmd.Cmd):
             print(HBNBCommand.ERROR_ID_NOT_FOUND)
 
     def do_all(self, arg):
-        """ print all elements in storage by class name"""
+        """ Prints all elements in storage by class name
+         Usage: all or all <class_name> or <class_name>.all()
+        """
         class_name = None
         if len(arg) > 0:
             class_name = self.validate_class_name(arg)
@@ -181,7 +191,10 @@ class HBNBCommand(cmd.Cmd):
         storage.print(class_name)
 
     def do_update(self, arg):
-        """ Update info in storage """
+        """ Updates info in storage
+        Usage: update <class_name> <id> <attribute_name> <attribute_value>
+        or <class_name>.update("<id>", "<attribute_name>", "<attribute_value>")
+        """
         if not self.validate_len_args(arg):
             return
         class_name = self.validate_class_name(arg)
@@ -220,7 +233,9 @@ class HBNBCommand(cmd.Cmd):
         obj.save()
 
     def do_clear(self, _):
-        """clear the terminal"""
+        """Clears the terminal
+        Usage: clear
+        """
         if os.name == 'posix':
             os.system('clear')
         else:
