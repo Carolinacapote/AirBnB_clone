@@ -35,3 +35,10 @@ This folder contains all the Class modules of the project, and a folder called e
 - **tests**  
 This folder contains all the UNITTEST of every module stored in the models folder and the TEST of the console.py file.
 
+
+## Features
+
+- **Programming language:** python3
+- **Style:** All modules use the **PEP 8** style
+- **Documentation:** All modules have documentation, including the functions, classes,etc.
+
